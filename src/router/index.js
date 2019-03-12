@@ -1,5 +1,7 @@
 
 import React from "react";
+import store from "../store";
+import { Provider } from 'react-redux';
 import {BrowserRouter as Router,Route,Redirect,Switch} from 'react-router-dom';
  
  
@@ -7,19 +9,23 @@ import {BrowserRouter as Router,Route,Redirect,Switch} from 'react-router-dom';
 import App from '../App.js';
 import Home from '../pages/Home.js';
 import About from '../pages/About.js';
+import Detail from "../pages/Detail.js";
  
  
 // 2.构建路由
 const Routes = (
 	<Router>
-        <App>
-            <Switch>
-                <Route path="/index" component={Home}></Route>
-                <Route path = "/home" component = {Home}></Route>
-                <Route path = "/about" component = {About}></Route>
-                <Redirect from="/" to="/index"/> {/*重定向*/}
-            </Switch>
-        </App>
+        <Provider store={store}>
+            <App>
+                <Switch>
+                    <Route path="/index" component={Home}></Route>
+                    <Route path = "/home" component = {Home}></Route>
+                    <Route path = "/about" component = {About}></Route>
+                    <Route path = "/detail" component = {Detail}></Route>
+                    <Redirect from="/" to="/index"/> {/*重定向*/}
+                </Switch>
+            </App>
+        </Provider>
 	</Router>
 )
 
